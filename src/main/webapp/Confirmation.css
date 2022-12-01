@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+header {
+	background-color: #FFFF99;
+	height: 110px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+body {
+	margin: 0;
+}
+
+table, th {
+	border-color: #000000;
+	border-collapse: collapse;
+	border: 1px solid;
+	text-align: center;
+	font-size: 1em;
+}
+
+.title {
+	margin: 0 auto 0;
+	padding-top: 30px;
+	padding-right: 70px;
+	text-align: center;
+}
+
+.login {
+	margin-left: 10px;
+}
+
+.naiyo {
+	text-align: center;
+	font-size: 170%;
+}
+
+.text {
+	text-align: left;
+	display: inline-block;
+}
+
+.table {
+	font-size: 170%;
+}
+
+.naiyotable {
+	margin: 10px auto 0;
+}
+
+.zumi {
+	color: #0000ff;
+}
+
+.mati {
+	color: #ff0000;
+}
+
+.btton {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 90px 0;
+}

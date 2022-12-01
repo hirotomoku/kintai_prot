@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+header {
+	background-color: #FFFF99;
+	height: 110px;
+}
+
+body {
+	margin: 0;
+}
+
+.title {
+	margin: 0 auto 0;
+	padding-top: 30px;
+	text-align: center;
+}
+
+.ID {
+	text-align: center;
+	font-size: 160%;
+}
+
+.PW {
+	text-align: center;
+	font-size: 160%;
+}
