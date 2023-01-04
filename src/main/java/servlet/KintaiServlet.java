@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import basic.Calendar1;
-import basic.CalendarLogic;
 import beans.RecordBeans;
+import common.CalenderCalc;
 import common.ConvertLocalDateTime;
 import common.TimeInfomation;
 import common.WorkingState;
@@ -56,27 +55,21 @@ public class KintaiServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(true);
 		
-//		String id = request.getParameter("employee_id");//JSPからidを取得（手順１）
 		String id = "S0001";
 		
-		CalendarLogic logic = new CalendarLogic();
-		Calendar1 c1 = null;
-		c1 = logic.createCalendar();
-		j = c1.getMonth();
-		session.setAttribute("c1", j);
-		
-		
-//		
+		Integer count = (Integer)session.getAttribute("count");
+		if(count == null) {
+			count = 0;
+		}
+	
 		String button = request.getParameter("button");
 		if(button == null) {
 			button = "";
 		}
-		//String id = request.getParameter("id");
-//		id = request.getParameter("id");
-//		button = request.getParameter("button");
+		
 		switch(button) {
 		//出勤ボタンがおされたら
-		case "出勤":
+		case "出　勤":
 			TimeInfomation nowIn = new TimeInfomation();//現在時刻のクラス作成
 			if(nowIn.setClockInTime() == 0) {//現在時刻をセット＆エラーがなかったら
 				LocalDateTime atime = nowIn.getClockInTime();//現在時刻を取得
@@ -84,6 +77,7 @@ public class KintaiServlet extends HttpServlet {
 				beans.setShain_id(id);
 				beans.setShukinbi(ConvertLocalDateTime.convertLTDtoDate(atime));
 				System.out.println(beans.getShukinbi());
+				System.out.println("エラーかもしれない");
 				beans.setShukin_zikan(ConvertLocalDateTime.convertLTDtoStr(atime));
 				beans.setNengetu(ConvertLocalDateTime.convertLTDtoStr_nengetu(atime));
 				beans.setYearMonthDayDayofCount(atime);
@@ -93,7 +87,7 @@ public class KintaiServlet extends HttpServlet {
 				System.out.println("エラー");
 			}
 			break;
-		case "退勤":	
+		case "退　勤":	
 			//退勤ボタンがおされたら
 			TimeInfomation nowOut = new TimeInfomation();
 			if(nowOut.setClockOutTime() == 0) {
@@ -134,15 +128,11 @@ public class KintaiServlet extends HttpServlet {
 				System.exit(0);
 			}
 			break;
-		case "先月":
-			int h = j - 1;
-			j = h;
-			session.setAttribute("c1", h);
+		case "前月":
+			count--;
 			break;
-		case "来月":
-			int p = j + 1;
-			j = p;
-			session.setAttribute("c1", p);
+		case "次月":
+			count++;
 			break;
 		default :
 			break;
@@ -189,21 +179,17 @@ public class KintaiServlet extends HttpServlet {
 		session.setAttribute("state2",OutButton);
 
 	
-		//共通全レコード抽出
-		//kintaimainからリストを作成　kintaimain dao 当該メソッド作成済み
-		//check.setYearMonthDayDayofCount(now);
+		//全レコード抽出
 		ArrayList<RecordBeans> list = test.selectAllRecord(check);
 		session.setAttribute("list", list);
-		
-//		forwardJSP("TopMenu.jsp", request, response);
-		
-		
-		
-		
+		session.setAttribute("count",count);
+		//カレンダーを出力
+		CalenderCalc cal = new CalenderCalc(count);
+		session.setAttribute("callenderMap", cal.getMapOfAMonth());
+		session.setAttribute("aMonth", cal.getaMonth());
+		session.setAttribute("aMonthOfDays", cal.getaMonthOfDays());
 
-		
-		forwardJSP("TopMenu.jsp", request, response);
-		//合計時間抽出
+		forwardJSP("top.jsp", request, response);
 	}
 	
 

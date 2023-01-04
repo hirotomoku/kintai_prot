@@ -10,6 +10,11 @@ header {
 
 body {
 	margin: 0;
+	
+}
+
+.body{
+	background-color:red !important;
 }
 
 table, th, td {
@@ -42,14 +47,7 @@ table, th, td {
 	text-align: center;
 }
 
-.workbutton {
-	text-align: center;
-	padding-top: 5px;
-}
 
-.workbutton>input {
-	margin: 0 15px;
-}
 
 .goworkbutton {
 	height: 50px;
@@ -61,14 +59,22 @@ table, th, td {
 	width: 80px;
 }
 
+.workbutton {
+	text-align: center;
+	padding-top: 5px;
+}
+
+.workbutton>input {
+	margin: 0 15px;
+}
+
 .timedisplay {
 	display: flex;
 	justify-content: center;
 }
 
 .timedisplay>p {
-	margin: 0 30px;
-	border: solid;
+	margin: 0 25px;
 }
 
 .monthbutton {
@@ -114,4 +120,14 @@ table, th, td {
 	display: flex;
 	width: 80px;
 	height: 30px;
+}
+.hyou > td{
+	width:90px
+}
+footer > p{
+	margin:0;
+	padding:2;
+}
+footer{
+	margin:0;
 }

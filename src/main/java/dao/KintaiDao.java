@@ -65,8 +65,7 @@ public class KintaiDao extends SuperDao {
 			/* データベースからの切断 */
 			closeConnection(con);
 		}
-		btest = list.get(0);
-		System.out.println(btest.getDay());
+
 		return list;
 	}
 	
@@ -116,7 +115,7 @@ public class KintaiDao extends SuperDao {
 			/* メンバ一覧情報の作成 */
 			rs.next();//レコードを取り出す。
 			a = rs.getString("taikin_zikan");
-			System.out.println(a);
+			System.out.println(a+"ですよ");
 			/* メンバ一覧を返す */
 
 		} catch (SQLException e) {

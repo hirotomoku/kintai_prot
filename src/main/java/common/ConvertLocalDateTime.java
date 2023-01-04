@@ -26,13 +26,9 @@ public class ConvertLocalDateTime {
 		return ltd;
 	}
 	
-	static public String convertLTDtoStr(LocalDateTime time) {//LocalDateTime形から”年-月-日-時:分”に変換
-		ArrayList<Integer> temp = convertLTDtoList(time);
-		ArrayList<String> temp2 = new ArrayList<>();
-		for(Integer i: temp) {
-			temp2.add(i.toString());
-		}
-		String str = temp2.get(0) + "-" + temp2.get(1) + "-" + temp2.get(2) + "-" + temp2.get(3) + ":" + temp2.get(4); 
+	static public String convertLTDtoStr(LocalDateTime time) {//LocalDateTime形からSTR”年-月-日-時:分”に変換
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		String str = time.format(dtf);
 		return str;
 	}
 	
